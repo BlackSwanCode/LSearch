@@ -1,0 +1,21 @@
+{
+  "rules": [
+    {"name": "AWS Access Key", "pattern": "\\b(AKIA|ASIA)[0-9A-Z]{16}\\b", "weight": 10, "kind": "secret", "mask_group": 0},
+    {"name": "AWS Secret Key", "pattern": "(?i)(aws_secret_access_key|aws_secret_key)[\\s:=]+['\"]?([A-Za-z0-9/+=]{40})['\"]?", "weight": 10, "kind": "secret", "mask_group": 2},
+    {"name": "GitHub PAT (classic)", "pattern": "\\bghp_[0-9a-zA-Z]{36}\\b", "weight": 9, "kind": "secret", "mask_group": 0},
+    {"name": "GitHub PAT (fine-grained)", "pattern": "\\bgithub_pat_[0-9a-zA-Z]{22}_[0-9a-zA-Z]{59}\\b", "weight": 9, "kind": "secret", "mask_group": 0},
+    {"name": "Slack Token", "pattern": "\\bxox[baprs]-[0-9a-zA-Z-]{10,}\\b", "weight": 8, "kind": "secret", "mask_group": 0},
+    {"name": "Stripe Live", "pattern": "\\b[rs]k_live_[0-9a-zA-Z]{24,}\\b", "weight": 10, "kind": "secret", "mask_group": 0},
+    {"name": "Stripe Test", "pattern": "\\b[rs]k_test_[0-9a-zA-Z]{24,}\\b", "weight": 4, "kind": "secret", "mask_group": 0},
+    {"name": "Google API Key", "pattern": "\\bAIza[0-9A-Za-z\\-_]{35}\\b", "weight": 8, "kind": "secret", "mask_group": 0},
+    {"name": "Google OAuth Secret", "pattern": "(?i)(client_secret|google_client_secret)[\\s:=]+['\"]?([A-Za-z0-9_-]{24,})['\"]?", "weight": 9, "kind": "secret", "mask_group": 2},
+    {"name": "Telegram Bot Token", "pattern": "\\b[0-9]{8,10}:[A-Za-z0-9_-]{35}\\b", "weight": 7, "kind": "secret", "mask_group": 0},
+    {"name": "Discord Webhook", "pattern": "https://discord(?:app)?\\.com/api/webhooks/[0-9]+/[A-Za-z0-9_-]+", "weight": 6, "kind": "secret", "mask_group": 0},
+    {"name": "Private Key Block", "pattern": "-----BEGIN (RSA|OPENSSH|EC|DSA|PGP)? ?PRIVATE KEY-----", "weight": 10, "kind": "secret", "mask_group": 0},
+    {"name": "JWT", "pattern": "\\beyJ[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]{10,}\\.[A-Za-z0-9_-]{10,}\\b", "weight": 7, "kind": "token", "mask_group": 0},
+    {"name": "DB URI", "pattern": "(?i)(mysql|postgres|postgresql|mongodb|redis|mssql):\\/\\/[^\\s\"'<>]+", "weight": 9, "kind": "secret", "mask_group": 0},
+    {"name": "Generic Secret Assignment", "pattern": "(?i)(api[_-]?key|secret|token|password|passwd|pwd|auth)[\\s:=]+['\"]?([A-Za-z0-9_\\-]{16,})['\"]?", "weight": 5, "kind": "secret", "mask_group": 2},
+    {"name": "Email (PII)", "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}", "weight": 2, "kind": "pii", "mask_group": 0},
+    {"name": "Internal Domain", "pattern": "(?i)\\b[a-z0-9-]+\\.(local|internal|corp|lan)\\b", "weight": 6, "kind": "context", "mask_group": 0}
+  ]
+}
